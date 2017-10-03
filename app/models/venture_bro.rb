@@ -1,0 +1,2 @@
+class VentureBro < ApplicationRecord
+end
