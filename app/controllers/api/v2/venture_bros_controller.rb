@@ -11,8 +11,11 @@ class Api::V2::VentureBrosController < ApplicationController
                                   organization: params[:organization],
                                   quote: params[:quote]
                                   )
-    @venturebro.save
-    render :show
+    if @venturebro.save
+      render :show
+    else 
+      render json: { errors: @venturebro.errors.full_messages}, status: 422
+    end
   end
 
   def show
@@ -34,8 +37,8 @@ class Api::V2::VentureBrosController < ApplicationController
   def destroy
     venturebro = VentureBro.find(params[:id])
     venturebro.destroy
-
-    render :index
+    
+    render json: {message: "destroyed"}, status: 200
   end
   
 

@@ -35,7 +35,7 @@ class Api::V1::VentureBrosController < ApplicationController
     venturebro = VentureBro.find(params[:id])
     venturebro.destroy
 
-    render :index
+    render json: {message: "destroyed"}, status: 200
   end
   
 

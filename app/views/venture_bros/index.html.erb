@@ -1,0 +1,18 @@
+<div id="app">
+  <div>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+    <h2>Add stuff!</h2>
+    Char: <input v-model="newVbChar">
+    Vehicle: <input v-model="newVbVehicle">
+    Org: <input v-model="newVbOrg">
+    Quote: <input v-model="newVbQuote">
+    <button v-on:click="addChar()">Touch me</button>
+  </div>
+  <div v-for="vb of ventureBros">
+    <h3 v-on:click="toggleBio(this)">{{ vb.character }}</h3>
+    <h4 class="hidden">{{ vb.quote }}</h4>
+    <br>
+  </div>
+</div>
