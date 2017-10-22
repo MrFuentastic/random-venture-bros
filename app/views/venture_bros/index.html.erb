@@ -1,5 +1,13 @@
 <div id="app">
   <div>
+    Search: <input v-model="searchFilter" list="chars">
+    <datalist id="chars">
+      <option v-for="char of ventureBros">{{char.character}}</option>
+    </datalist>
+  </div>
+  <button id="character" v-on:click="setSort('character')">Sort by Character Name</button>
+  <button id="quote" v-on:click="setSort('quote')">Sort by Quote</button>
+  <div>
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
@@ -10,9 +18,9 @@
     Quote: <input v-model="newVbQuote">
     <button v-on:click="addChar()">Touch me</button>
   </div>
-  <div v-for="vb of ventureBros">
-    <h3 v-on:click="toggleBio(this)">{{ vb.character }}</h3>
-    <h4 class="hidden">{{ vb.quote }}</h4>
+  <div v-for="vb of sortedCharacters" v-if="validChar(vb)">
+    <h3 v-on:click="toggleQuote(this)">{{ vb.character }}</h3>
+    <h4>{{ vb.quote }}</h4>
     <br>
   </div>
 </div>
